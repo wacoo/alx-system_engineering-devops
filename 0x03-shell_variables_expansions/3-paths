@@ -1,0 +1,2 @@
+#!/bin/bash
+echo $PATH|cut -d':' -f1-50|tr ':' '\n'|wc -l
