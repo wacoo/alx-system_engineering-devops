@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f -mtime -14 -name "*.gif" -printf '%f\n'|tr -d .gif
+find -type f -name "*.gif" -printf "%f\n"|rev|cut -d'.' -f2-|rev|LC_ALL=C sort -f
