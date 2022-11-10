@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#print 'Bast School 10 times using until loop'
+i=0
+until [ $i -eq 10 ]
+do
+	echo "Best School"
+	((i++))
+done	

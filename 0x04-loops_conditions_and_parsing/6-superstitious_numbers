@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#prints numbers from 1 to 20, prints 
+#4 and bad luck from China
+#9 and bad luck from Japan
+#17 and bad luck from Italy
+#newline after numbers
+i=1
+while [ $i -le 20  ]
+do
+	echo "$i"
+	case $i in
+		4) echo "bad luck from China";;
+		9) echo "bad luck from Japan";;
+		17) echo "bad luck from Italy";;
+	esac
+	i=$((i+1))
+done

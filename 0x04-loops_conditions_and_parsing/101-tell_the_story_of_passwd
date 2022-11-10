@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#Prints as story each line in passwd
+fl="/etc/passwd"
+while IFS=':' read -r c1 c2 c3 c4 c5 c6 c7
+do
+	echo "The user $c1 is part of the $c4 gang, lives in $c6 and rides $c7. $c3's place is protected by the passcode $c2, more info about the user here: $c5"
+done <$fl
