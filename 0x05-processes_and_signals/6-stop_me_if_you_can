@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 #Kill a process with out using kill or killall commands
-./5-dont_stop_me_now 
+
+pkill -f 4-to_infinity_and_beyond

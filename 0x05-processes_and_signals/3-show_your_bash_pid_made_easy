@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 #Dispaly PID along with process name for the the lines that contain 'bash''
-./2-show_your_bash_pid | tr -s " " | cut -d" " -f 2,12 | grep "bash" | grep -v "\-bash"
+
+pgrep bash -l
