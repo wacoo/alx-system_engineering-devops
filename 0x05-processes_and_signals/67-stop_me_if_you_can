@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#Kill the 4-to_infinity_and_beyond process
+#lst="$(ps -uxa | grep '4-to_infinity_and_beyond' | tr -s ' ' | cut -d' ' -f2)"
+
+for i in  $(pgrep '7-highlander' | head -1)
+do
+	kill "$i"
+done

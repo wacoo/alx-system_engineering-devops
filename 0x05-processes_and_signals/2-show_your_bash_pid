@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#from the previous script result get line containing 'bash'9
+# shellcheck disable=SC2009
+./1-list_your_processes | grep "bash"
