@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# lists all TCP and UDP ports that are listening along with the program names
+netstat -tunlp 

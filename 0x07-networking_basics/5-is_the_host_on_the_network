@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Inquires if the a host give as an IP address is active
+#ping
+
+ar=$#
+
+if [ "$ar" -eq 0 ]
+then
+	echo "Usage: 5-is_the_host_on_the_network {IP ADDRESS}"
+else
+	ping -c 5 "$1"
+fi
