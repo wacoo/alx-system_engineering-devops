@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#shows all active IPs in loca machine
+hostname -I
