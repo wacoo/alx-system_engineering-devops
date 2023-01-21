@@ -1,0 +1,18 @@
+file {'~/.ssh/ssh_config':
+  ensure=>'present'
+}
+file_line{'host':
+  ensure=>'present'
+  path='~/.ssh/ssh_config'
+  line=>'Host *'
+}
+file_line{'force_pk_use':
+  ensure=>'present'
+  path=>'~/.ssh/ssh_config'
+  line=>'IdentityFile ~/.ssh/school'
+}
+file_line{'disable_pass_auth':
+  ensure=>'present'
+  path=>'~/.ssh/ssh_config'
+  line=>'PasswordAuthentication no'
+}
