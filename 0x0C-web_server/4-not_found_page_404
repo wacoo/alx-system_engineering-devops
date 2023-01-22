@@ -6,9 +6,9 @@ sudo ufw allow 'Nginx HTTP'
 mkdir -p /var/www/html/
 sudo chmod -R 755 /var/www
 echo 'Hello World!' > /var/www/html/index.html
-echo "Ceci n'est pas une page" > error404.html
-sudo mv 404.html /var/www/html
-SERVER_CONFIG=\
+echo "Ceci n'est pas une page">error404.html
+sudo mv error404.html /var/www/html
+CONFIG=\
 "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
@@ -18,16 +18,20 @@ SERVER_CONFIG=\
 	location / {
 		try_files \$uri \$uri/ =404;
 	}
-	location /redirect_me {
-                rewrite ^/redirect_me$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
-        }
 	error_page 404 /error404.html;
-}"
-
-bash -c "echo -e '$SERVER_CONFIG' > /etc/nginx/sites-enabled/default"
-
-if [ "$(pgrep -c nginx)" -le 0 ]; then
-	service nginx start
+        location  /error404.html {
+            internal;
+        }
+        
+        if (\$request_filename ~ redirect_me){
+            rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+        }
+}
+"
+echo "$CONFIG" > /etc/nginx/sites-available/default
+if [ "$(pgrep nginx)" -le 0 ];
+then
+    service nginx start
 else
-	service nginx restart
-fi
+    service nginx restart
+fi;
