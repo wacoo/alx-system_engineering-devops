@@ -6,6 +6,8 @@ sudo ufw allow 'Nginx HTTP'
 mkdir -p /var/www/html/
 sudo chmod -R 755 /var/www
 echo 'Hello World!' > /var/www/html/index.html
+echo "Ceci n'est pas une page" > error404.html
+sudo mv 404.html /var/www/html
 SERVER_CONFIG=\
 "server {
 	listen 80 default_server;
