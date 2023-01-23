@@ -1,7 +1,8 @@
 # install HAProxy, configure it to load balace web-01 and web-02 servers
-apt-get install --no-install-recommends software-properties-common
-add-apt-repository ppa:vbernat/haproxy-2.7
-apt-get install haproxy=2.7.\*
+sudo apt-get update
+sudo apt-get -y install --no-install-recommends software-properties-common
+sudo add-apt-repository -y ppa:vbernat/haproxy-2.4
+sudo apt-get -y install haproxy
 
 # the load balancer's configuration
 DOMAIN_NAME='gugemt.tech'
