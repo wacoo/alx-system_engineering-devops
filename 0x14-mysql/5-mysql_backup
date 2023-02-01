@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# backsup all mysql databases
+
+USER="root"
+d=$(date +%m-%d-%Y)
+rm "$OUTPUT/*gz" > /dev/null 2>&1
+echo "Dumping all database..."
+mysqldump -u root -p"$1" --opt --all-databases > backup.sql
+echo "Dump complete."
+echo "Compressing dump..."
+tar -czvf "$d".tar.gz backup.sql
+echo "Compression complete."
