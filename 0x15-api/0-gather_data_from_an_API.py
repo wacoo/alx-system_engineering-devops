@@ -1,30 +1,30 @@
 #!/usr/bin/python3
+'''
+Fetch and print api data of employe
+'''
 
-""" show employee todo list progress """
+import re
+import requests
+import sys
 
-if __name__ == "__main__":
-    from sys import argv
-    import json
-    import urllib.request
+REST_API = "https://jsonplaceholder.typicode.com"
 
-    idd = int(argv[1])
-    emp_url = "https://jsonplaceholder.typicode.com/users/" + str(idd)
-    todos_url = "https://jsonplaceholder.typicode.com/todos/"
-    emp = urllib.request.urlopen(emp_url)
-    todos = urllib.request.urlopen(todos_url)
-    d_emp = json.loads(emp.read())
-    d_todos = json.loads(todos.read())
-    t_title = []
-    t_count = 0
-    done_count = 0
-    for td in d_todos:
-        if td["userId"] == idd:
-            if td["completed"]:
-                done_count += 1
-                t_title.append(td["title"])
-            t_count += 1
-
-    print("Employee {} is done with tasks({}/{}):".format(d_emp["name"],
-          done_count, t_count))
-    for i in t_title:
-        print("\t {}".format(i))
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        if re.fullmatch(r'\d+', sys.argv[1]):
+            id = int(sys.argv[1])
+            emp_req = requests.get('{}/users/{}'.format(REST_API, id)).json()
+            task_req = requests.get('{}/todos'.format(REST_API)).json()
+            emp_name = emp_req.get('name')
+            tasks = list(filter(lambda x: x.get('userId') == id, task_req))
+            completed_tasks = list(filter(lambda x: x.get('completed'), tasks))
+            print(
+                'Employee {} is done with tasks({}/{}):'.format(
+                    emp_name,
+                    len(completed_tasks),
+                    len(tasks)
+                )
+            )
+            if len(completed_tasks) > 0:
+                for task in completed_tasks:
+                    print('\t {}'.format(task.get('title')))
