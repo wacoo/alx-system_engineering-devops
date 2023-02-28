@@ -1,17 +1,13 @@
 #!/usr/bin/python3
 """ fetch the nuber of subscribers of a subreddit from reddit """
 import json
-from sys import argv
-from urllib import request
+import requests
 
 
 def number_of_subscribers(subreddit):
     """ shows the number of subscribers a subredit """
-    param = argv[1]
-    url = 'https://www.reddit.com/r/{}.json'.format(param)
-    with request.urlopen(url) as res:
-        if res.getcode() == 200:
-            data = res.read()
-            d = json.loads(data)
-            subs = d['data']['children'][1]['data']['subreddit_subscribers']
-            return int(subs)
+    url = 'https://www.reddit.com/r/{}.json'.format(subreddit)
+    res = requests.get(url)
+    d = json.loads(res.text)
+    subs = d['data']['children'][1]['data']['subreddit_subscribers']
+    return int(subs)
