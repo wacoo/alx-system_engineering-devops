@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ fetch the nuber of subscribers of a subreddit from reddit """
-from sys import argv
 import json
+from sys import argv
 from urllib import request
 
 
